@@ -1,0 +1,286 @@
+
+/* 1. CSS Custom Properties */
+:root {
+    --brand: #2563eb;
+    --accent: #f59e0b;
+    --background: #f1f5f9;
+    --surface: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --border: #e2e8f0;
+}
+
+/* 2. General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--text-primary);
+}
+
+/* 3. Main Dashboard Layout - CSS Grid */
+.dashboard {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: 100vh;
+}
+
+/* 4. Sidebar - Flexbox */
+.sidebar {
+    background-color: var(--surface);
+    padding: 30px 20px;
+    border-right: 1px solid var(--border);
+
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.sidebar h2 {
+    color: var(--brand);
+    font-size: 26px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sidebar nav a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    padding: 13px 15px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a:focus-visible,
+.sidebar nav a.active {
+    background-color: var(--brand);
+    color: white;
+}
+
+/* 5. Main Content */
+.main-content {
+    padding: 30px;
+    min-width: 0;
+}
+
+/* 6. Header - Flexbox */
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.top-header h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.top-header p {
+    color: var(--text-secondary);
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: bold;
+}
+
+.profile-icon {
+    background-color: var(--brand);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 7. Dashboard Cards - CSS Grid */
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+/* 8. Individual Cards - Flexbox */
+.card {
+    background-color: var(--surface);
+    padding: 25px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover,
+.card:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10);
+}
+
+.card-icon {
+    font-size: 30px;
+}
+
+.card h3 {
+    font-size: 18px;
+}
+
+.amount {
+    color: var(--brand);
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.description {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* 9. Responsive Layout */
+@media (max-width: 767px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .sidebar nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .top-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 10. Dark Theme */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --brand: #60a5fa;
+        --accent: #fbbf24;
+        --background: #0f172a;
+        --surface: #1e293b;
+        --text-primary: #f8fafc;
+        --text-secondary: #cbd5e1;
+        --border: #334155;
+    }
+}
+
+/* Budget Summary */
+.budget-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.budget-summary .card {
+    background: var(--surface);
+    padding: 25px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.budget-summary .card p {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--brand);
+}
+
+/* Expense Form */
+.expense-form-section,
+.expense-list-section {
+    background: var(--surface);
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.expense-form-section h2,
+.expense-list-section h2 {
+    margin-bottom: 20px;
+}
+
+#expenseForm {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+#expenseForm input,
+#expenseForm select {
+    flex: 1;
+    min-width: 150px;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+#expenseForm button {
+    padding: 12px 20px;
+    background: var(--brand);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#expenseForm button:hover {
+    opacity: 0.85;
+}
+
+/* Recent Transactions */
+#expenseList p {
+    padding: 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .budget-summary {
+        grid-template-columns: 1fr;
+    }
+
+    #expenseForm {
+        flex-direction: column;
+    }
+}
+
